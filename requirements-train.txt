@@ -1,0 +1,12 @@
+# Recorded training environment, not a claim of a newly validated clean install.
+# Recorded rental runtime: Linux + Python 3.11.11. Install the matching CUDA wheel first:
+# python -m pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
+torch==2.6.0+cu124
+torchvision==0.21.0+cu124
+transformers==4.57.3
+ms-swift==4.5.2
+peft==0.19.1
+trl==0.29.1
+tensorboard==2.21.0
+accelerate==1.8.0
+# This is a core-version record, not a transitive lockfile.

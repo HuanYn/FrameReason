@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "framereason"
+version = "0.1.0"
+description = "Minimal CLEVRER video QA SFT and verifiable-reward GRPO reproduction"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["framereason*"]
+
+[tool.setuptools.package-data]
+framereason = ["configs/*.json"]

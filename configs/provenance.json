@@ -1,0 +1,40 @@
+{
+  "schema": "framereason.source-provenance/1",
+  "historical_ms_swift_code_commit": "89e4bcda66583b43fdb5e35cc5dca9cee241f123",
+  "model_repository": "Qwen/Qwen3-VL-4B-Instruct",
+  "model_revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+  "source_directory": "examples/train/grpo/clevrer_verifiable",
+  "archived_source_files_sha256": {
+    "framereason/output_format.py": "8873615146f6abb28949b412119b34a1173340085cee6cbf178b3bbf80dac2fe",
+    "framereason/reward_core.py": "ed179a38d8c21a87a4e2a6ec595671a9d49d14ce3ad412ba799fb2770f79b00d",
+    "framereason/reward_plugin.py": "4e35173f9f147f1e760db325f39b8462e3aa8622ba7879766ad78d27a608ccbf",
+    "framereason/convert_clevrer.py": "124f8d6d006398db7aa10cd1d9690a0e3781c66c83cc83f3258a8c0a4002b1b8",
+    "framereason/extract_frames.py": "84d1667cc9a4adfb088c61eb81327b86729f41eaa70c2b0180ac9de024f6fa21"
+  },
+  "published_lf_files_sha256": {
+    "framereason/output_format.py": "c5b6512f1c05830ac72d83529f5365a2db58f33ea7c9c6fd8c9cd974bed25d47",
+    "framereason/reward_core.py": "09df375bcba41d66bc7ec427085f14976e00fe9b8f53b58bc8cd78c0997dbd9a",
+    "framereason/reward_plugin.py": "95c9a90f243ee3ada24459893db611ec0123c71cee0363a745789158c75982be",
+    "framereason/convert_clevrer.py": "da93e44bc486bf70c177405c96dab0167207f2425cdcde5ddc7d788ec82b4898",
+    "framereason/extract_frames.py": "e8be13ecff8f52258c7784e787b7c580801d961fe0f9f1afcb461917cccdb99e"
+  },
+  "config_sources": {
+    "sft": "historical materialized SFT attempt-0001: 750 steps, final two candidates 700/750",
+    "grpo": "historical materialized GRPO attempt-0001: 3000 steps, 4 generations, 320 completion tokens"
+  },
+  "annotation_sha256": {
+    "train.json": "11181da673d223f41fb596aacfbbd3ff83d39af7f09a3210549e98cb283714b4",
+    "validation.json": "fdf841678a476655b906165e6ee4b0ed1516785c5ab927c8d0a4614e4e27e10d"
+  },
+  "published_changes": [
+    "Copied five core modules are semantically unchanged; archived CRLF line endings are normalized to LF for Git publication. Both byte hashes are recorded separately.",
+    "New portable dry-run-first launch and inference wrappers; historical machine-specific orchestration omitted.",
+    "Config values retained but all private paths replaced by CLI inputs.",
+    "New dependency-free compact800 selection and evaluation wrappers using the original identity/ranking/scoring rules."
+  ],
+  "limits": [
+    "CPU tests do not validate GPU execution or a clean dependency installation.",
+    "Original training used a locally modified editable ms-swift checkout; the public recipe is not a transitive environment lock.",
+    "No model/checkpoint weights are distributed. New training is not claimed to recreate reported numbers exactly."
+  ]
+}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="CLEVRER 视频与 Qwen3-VL-4B Base、SFT700、GRPO3000 的真实历史回答对照。">
+  <title>FrameReason · Video / Question / Three Models</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><a class="brand" href="#">Frame<span>Reason</span></a><span class="pill">真实视频 · 历史回答 · 非实时推理</span></header>
+  <main>
+    <section class="intro"><p class="eyebrow">CLEVRER × QWEN3-VL-4B-INSTRUCT</p><h1>同一段视频，三个模型怎么回答？</h1><p>原始 4B → LoRA SFT700 → SFT + GRPO3000。逐条对照已完成评测中的真实回答，同时展示 GRPO 的纠正与退步。</p></section>
+    <div class="controls"><label>题型<select id="type-filter"><option value="all">全部题型</option><option value="descriptive">描述</option><option value="explanatory">解释</option><option value="predictive">预测</option><option value="counterfactual">反事实</option></select></label><label class="picker">视频与问题<select id="sample-select"></select></label><button id="previous" aria-label="上一个样例">←</button><span id="position" aria-live="polite"></span><button id="next" aria-label="下一个样例">→</button></div>
+    <p id="load-error" class="warning" hidden role="alert">无法读取演示数据，请保留完整 demo 目录。</p>
+    <section class="input-grid">
+      <article class="card"><div class="heading"><h2>视频</h2><span id="video-label"></span></div><div class="player-stage"><video id="video" controls playsinline preload="metadata" aria-label="真实 CLEVRER 视频"></video><img id="video-gif" alt="同一真实视频的完整动图转码" hidden><button id="video-play" class="play-overlay">▶ 播放视频</button></div><div class="playback-controls"><button id="video-replay">↻ 从头播放</button><button id="video-fallback">切换动图播放</button></div><p id="video-error" class="warning" hidden role="alert"></p><div class="video-footer"><span id="video-info" aria-live="polite"></span><a id="video-download" download>下载兼容视频 WebM ↗</a></div><p class="note">完整原片的 VP8 / WebM 转码，不是生成视频。模型当时实际接收的是均匀抽取的 8 帧；此页不运行模型。</p></article>
+      <article class="card"><div class="heading"><h2>同一道题</h2><span class="pill" id="question-type"></span></div><h3 id="question-zh"></h3><p id="question-en" lang="en"></p><ol id="choices"></ol><button id="truth-toggle" aria-expanded="false" aria-controls="truth-panel">显示标准答案</button><div id="truth-panel" class="truth" hidden><small>官方标注 · 仅用于评分</small><strong id="truth-answer"></strong><p id="truth-description"></p></div></article>
+    </section>
+    <div class="section-heading"><h2>三个版本的实际回答</h2><span>英文原始输出保留；中文仅作展示翻译</span></div>
+    <section class="answers" aria-label="三模型回答对比">
+      <article class="answer card"><div class="heading"><span class="eyebrow">01 / BASE</span><span id="base-status"></span></div><h3>原始模型</h3><p class="note">Qwen3-VL-4B-Instruct</p><strong class="answer-value" id="base-answer"></strong><p id="base-description"></p><details><summary>原始回答与符号程序</summary><pre id="base-raw"></pre></details></article>
+      <article class="answer card"><div class="heading"><span class="eyebrow">02 / SFT</span><span id="sft-status"></span></div><h3>监督微调</h3><p class="note">4B + LoRA · checkpoint 700</p><strong class="answer-value" id="sft-answer"></strong><p id="sft-description"></p><details><summary>原始回答与符号程序</summary><pre id="sft-raw"></pre></details></article>
+      <article class="answer card"><div class="heading"><span class="eyebrow">03 / GRPO</span><span id="grpo-status"></span></div><h3>强化学习后训练</h3><p class="note">SFT + GRPO · checkpoint 3000</p><strong class="answer-value" id="grpo-answer"></strong><p id="grpo-description"></p><details><summary>原始回答与符号程序</summary><pre id="grpo-raw"></pre></details></article>
+    </section>
+    <p id="sample-note" class="sample-note" aria-live="polite"></p>
+    <section class="overall"><div><p class="eyebrow">固定 800 题 · 非演示样例正确率</p><h2>完整评测结果</h2></div><div><span>Base</span><strong>42.875%</strong><small>343 / 800</small></div><div class="primary"><span>SFT700</span><strong>76.125%</strong><small>609 / 800</small></div><div><span>GRPO3000</span><strong>75.750%</strong><small>606 / 800</small></div></section>
+    <details class="scope"><summary>来源、选样方式与结论边界</summary><p>前 8 个例子：按完整评测原始顺序，每种题型选择 Base / SFT 答案不同的前 2 题。另加入最早的 1 题 GRPO 纠正与 1 题 GRPO 退步。它们是有意挑选的讲解案例，不代表整体准确率。</p><p>完整 800 题中，GRPO 纠正 59 题、丢失 62 题，净少 3 题，未超过 SFT。这是来自官方 validation 的自定义子集、单 seed 结果，不是官方隐藏测试榜单。</p><p>评分依据归档答案匹配结果；额外文字也可能造成错误。短符号程序按标注匹配，不是物理仿真执行，也不是对内部思维过程的证明。</p><p>所有回答均为历史输出，不请求推理 API、不上传文件、不占用 GPU。仓库仅含少量展示媒体；不含模型权重、完整数据集或当时的 8 帧输入。媒体 SHA256 与记录 ID 见 samples.json。</p><p><a href="https://clevrer.csail.mit.edu/" target="_blank" rel="noreferrer">CLEVRER 数据集与作者说明 ↗</a> · <a href="../docs/demo-examples.md">案例说明与媒体来源</a></p></details>
+    <footer><span>FrameReason · Archived comparison demo</span><span>10 段视频 · 10 道题 · 30 条真实回答</span></footer>
+  </main>
+  <noscript>需要启用 JavaScript 切换视频与答案。也可直接查看 samples.json。</noscript>
+  <script src="data.js"></script><script src="app.js"></script>
+</body>
+</html>

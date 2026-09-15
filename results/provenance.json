@@ -1,0 +1,45 @@
+{
+  "adapter_manifest_sha256": {
+    "grpo3000": "d68c75311b6f1adcaf19c714c644ff2b20d48019565059f22060e9887656390f",
+    "sft700": "d6894ba1d67c3fd4fba1732c1228376b125ff865520ab285c4512f9b9004c0f2"
+  },
+  "grpo_original_failures_sha256": "16614149123bdbf8bccd6c0e15d5d936b45031f8178aa1fbcbcb61540ff787e8",
+  "grpo_original_metrics_sha256": "732dfc24c3f7502a0afbc831b977343d262e901f0a157696240adfcb101b83dd",
+  "historical_versions": {
+    "evaluation_protocol_commit": "fee1c74e33335838ca836384fb8c527bc856a8fe",
+    "model_repository": "Qwen/Qwen3-VL-4B-Instruct",
+    "model_revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+    "ms_swift": "4.5.2",
+    "peft": "0.19.1",
+    "python": "3.11.11",
+    "recovery_execution_commit": "ff3591b0fd916b85af50fb0580be0af4b1e685a1",
+    "torch": "2.6.0+cu124",
+    "training_code_commit": "89e4bcda66583b43fdb5e35cc5dca9cee241f123",
+    "transformers": "4.57.3",
+    "trl": "0.29.1"
+  },
+  "original_artifact_sha256": {
+    "base_failures": "c41e2cf017f0bee26390e43ae9ded3f7ea8af5084face011335dc3d2aec44b4b",
+    "base_metrics": "e3e109af2f0baf8d62a1073b446367291072dc1fdbe6f6dfc4236be8e7147a36",
+    "base_predictions": "89da06710c06b096346ab02d4b4934d832ac51dfa0b28990be96f55b2c2dbb83",
+    "completions": "1d637b13a484c0a4054750b2f2133616fa2db85864722667f2eb3c4e0d72f049",
+    "extra_records": "61b2ec107dbb72ebe928882fa8c4b68cf1621c4ee2428ae973bc0af4c62578dc",
+    "grpo_extract": "f1614e0eea6f6e4a16e297a5813f92f3e441c341409bc67e8ccdd106fe692a80",
+    "grpo_predictions": "bee900115d898142da9738b9929b9e5120161a4be4bf365ac401f368d8eab82c",
+    "scalars": "9253cf924c163a56d6e4cf7b553a278a6810bdbd7507b6be053caa8413054a38",
+    "selected_records": "c98ccc2c4ef74edda0a4c5f97b683dd51cef7422585e01614bb01cd5a9fe6880",
+    "sft_failures": "4f7a323d22e21d9f9d34c973b18b23cb9215e9cc2712624c9b9285943bcadfd0",
+    "sft_metrics": "6b18fb64342af9c1a8180b7088ffa30e9266de5f4d0b22a4176f8d209cc1cd09",
+    "sft_predictions": "8b813e17a54d85eac8d902edeb2234802d180022a961b158e66faac4fc81b906"
+  },
+  "published_artifact_sha256": {
+    "demo-references.jsonl": "f387d3c1bb550879332913b0778a7355426b4ba99a189af915bba8146a1705bc",
+    "metrics.json": "afbaab2d2f4b3fada51d55584a190a36c96de18279c9d202f4630fc23effdb4b",
+    "predictions.jsonl": "63bbd6b7ce23244ce779aaf1aec9a107496affa23bf13def97ee0961509cc9d0",
+    "sampling-spec.json": "35661c87dee8fbceddc026accef180e956abf65ec42f00c25cc4b66d39df2651",
+    "subset800.jsonl": "f0cc8b55d16de087f9d48bc62e1d08b5a5d566ac71b2663849eb7c751a756598",
+    "training-groups.jsonl": "f449e3511b411aa59761e4bd2710f1118aa51860f5c8dd91229955fa27e4c0e0"
+  },
+  "sanitization": "Allowlisted scientific fields only. No hostnames, credentials, user filesystem paths, GPU UUIDs, weights, optimizer states, or frame bytes.",
+  "schema_version": "framereason.public_provenance/1"
+}

@@ -1,0 +1,2 @@
+# Optional: if ffprobe is absent, the original extractor can use this backend.
+imageio-ffmpeg==0.6.0

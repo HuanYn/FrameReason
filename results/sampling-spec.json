@@ -1,0 +1,44 @@
+{
+  "answer_or_trace_or_prediction_used_for_ranking": false,
+  "canonical_identity": {
+    "question_id_type": "nonnegative JSON integer; boolean forbidden",
+    "record_id": "sha256(utf8(video_id + \":\" + decimal(question_id))).hexdigest()"
+  },
+  "parent_dataset_sha256": "d3c26830f6668e9043046d17e49234b207d68893331399c06794d7debafef74e",
+  "parent_input_order_affects_selection": false,
+  "parent_per_question_type": 1000,
+  "parent_rows": 4000,
+  "question_type_order": [
+    "descriptive",
+    "explanatory",
+    "predictive",
+    "counterfactual"
+  ],
+  "rank_key": {
+    "hash": "SHA-256 lowercase hexadecimal",
+    "literal_schema_version": "clevrer.compact800.sampling/1",
+    "payload": [
+      "literal_schema_version",
+      "integer_seed",
+      "question_type",
+      "video_id",
+      "integer_question_id"
+    ],
+    "serialization": "JSON array; ensure_ascii=false; separators=(\",\", \":\"); allow_nan=false; UTF-8; no BOM; no trailing LF",
+    "sort": [
+      "rank_hash ascending ASCII",
+      "record_id ascending ASCII"
+    ]
+  },
+  "ranking_input_fields": [
+    "question_type",
+    "video_id",
+    "question_id"
+  ],
+  "schema_version": "clevrer.compact800.sampling/1",
+  "seed": 42,
+  "selection": "Sort within each question type; take first 200; concatenate in question_type_order.",
+  "subset_per_question_type": 200,
+  "subset_rows": 800,
+  "subset_serialization": "Each original full row: JSON object with sort_keys=true, ensure_ascii=false, separators=(\",\", \":\"), allow_nan=false; UTF-8, no BOM, one LF after every row including last."
+}

@@ -1,0 +1,600 @@
+window.FRAME_REASON_DATA = {
+  "schemaVersion": 1,
+  "mode": "archived-model-outputs-not-live-inference",
+  "dataset": {
+    "name": "CLEVRER",
+    "url": "https://clevrer.csail.mit.edu/",
+    "license": "CC0",
+    "licenseSource": "https://data.csail.mit.edu/clevrer/README.txt",
+    "split": "custom fixed 800-question subset of the official validation split"
+  },
+  "models": {
+    "family": "Qwen/Qwen3-VL-4B-Instruct",
+    "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+    "base": {
+      "label": "Base",
+      "step": null
+    },
+    "sft": {
+      "label": "SFT700",
+      "step": 700
+    },
+    "grpo": {
+      "label": "GRPO3000",
+      "step": 3000
+    },
+    "input": "8 uniformly sampled frames per question",
+    "seed": 42
+  },
+  "fullResults": {
+    "base": {
+      "correct": 343,
+      "total": 800,
+      "accuracy": 0.42875
+    },
+    "sft": {
+      "correct": 609,
+      "total": 800,
+      "accuracy": 0.76125
+    },
+    "grpo": {
+      "correct": 606,
+      "total": 800,
+      "accuracy": 0.7575
+    }
+  },
+  "paired": {
+    "corrected": 59,
+    "lost": 62,
+    "bothCorrect": 547,
+    "bothWrong": 132
+  },
+  "selection": "First two Base/SFT-disagreement examples of each question type in original evaluation order, plus the earliest GRPO correction and earliest GRPO loss. These 10 examples are illustrative, not representative.",
+  "limitations": [
+    "Historical archived predictions, not live model inference.",
+    "One seed and a custom evaluation subset, not the official hidden-test leaderboard.",
+    "Chinese question/choice translations are display-only; original model prompts were English.",
+    "Answer correctness is the archived strict answer score, not a judgment of explanation plausibility.",
+    "Symbolic traces were annotation-matched, not executed in a physical simulator.",
+    "The player shows the full original clip; the models received eight sampled frames.",
+    "The public demo does not contain checkpoints or the original eight model-input JPEGs."
+  ],
+  "samples": [
+    {
+      "id": "video_13559|3",
+      "videoId": "video_13559",
+      "questionId": 3,
+      "ordinal": 6,
+      "type": "descriptive",
+      "question": "What is the shape of the last object to collide with the metal cube?",
+      "choices": [],
+      "truth": "cylinder",
+      "group": "SFT 与 GRPO 均答对",
+      "base": {
+        "answer": "purple cylinder",
+        "raw": "<trace>{ \"question_type\": \"what\", \"question_program\": \"last_collide_shape\", \"selected_choice_ids\": [ \"purple_cylinder\" ], \"selected_choice_programs\": [ \"shape_of_last_collided_object\" ] }</trace><answer>purple cylinder</answer>",
+        "correct": false,
+        "recordId": "e4b2765020f4015dace07add76e6ad1de9712aed5adcd0af3ac52ff972359679"
+      },
+      "sft": {
+        "answer": "cylinder",
+        "raw": "<trace>{\"question_program\":[\"events\",\"objects\",\"metal\",\"filter_material\",\"cube\",\"filter_shape\",\"unique\",\"filter_collision\",\"last\",\"filter_order\",\"objects\",\"metal\",\"filter_material\",\"cube\",\"filter_shape\",\"unique\",\"get_col_partner\",\"query_shape\"],\"question_type\":\"descriptive\",\"selected_choice_ids\":[],\"selected_choice_programs\":[]}</trace><answer>cylinder</answer>",
+        "correct": true,
+        "recordId": "e4b2765020f4015dace07add76e6ad1de9712aed5adcd0af3ac52ff972359679"
+      },
+      "grpo": {
+        "answer": "cylinder",
+        "raw": "<trace>{\"question_program\":[\"events\",\"objects\",\"metal\",\"filter_material\",\"cube\",\"filter_shape\",\"unique\",\"filter_collision\",\"last\",\"filter_order\",\"objects\",\"metal\",\"filter_material\",\"cube\",\"filter_shape\",\"unique\",\"get_col_partner\",\"query_shape\"],\"question_type\":\"descriptive\",\"selected_choice_ids\":[],\"selected_choice_programs\":[]}</trace><answer>cylinder</answer>",
+        "correct": true,
+        "recordId": "e4b2765020f4015dace07add76e6ad1de9712aed5adcd0af3ac52ff972359679"
+      },
+      "media": {
+        "video": "media/video_13559.webm",
+        "poster": "media/video_13559.jpg",
+        "width": 480,
+        "height": 320,
+        "fps": 25,
+        "frames": 128,
+        "duration": 5.12,
+        "codec": "VP8",
+        "originalMp4Sha256": "199908df03f4dbc4ae035339e6b5c8078355bea6602f165789497ab9dc2d094c",
+        "hashes": {
+          "video": "b8733bbd21696dc6faaf2ebc35ba140bde6b5c63611e1457b6241de162ca2fb2",
+          "poster": "1117bca6a3cdf9fbfec38f1a8b50916d65994d1514762400d99662c448b9a8dc"
+        },
+        "derivation": "Full-clip CPU re-encoding; no trimming or frame-rate reduction. Poster: frame 0. GIF, where provided, uses a lossy 256-color palette."
+      }
+    },
+    {
+      "id": "video_13945|2",
+      "videoId": "video_13945",
+      "questionId": 2,
+      "ordinal": 7,
+      "type": "descriptive",
+      "question": "How many stationary cylinders are there when the video ends?",
+      "choices": [],
+      "truth": "3",
+      "group": "SFT 与 GRPO 均答对",
+      "base": {
+        "answer": "4",
+        "raw": "<trace>{ \"question_type\": \"count\", \"question_program\": \"count stationary cylinders\", \"selected_choice_ids\": [0, 1, 2, 3, 4, 5, 6, 7], \"selected_choice_programs\": [ \"count cylinders\", \"count cylinders\", \"count cylinders\", \"count cylinders\", \"count cylinders\", \"count cylinders\", \"count cylinders\", \"count cylinders\" ] }</trace><answer>4</answer>",
+        "correct": false,
+        "recordId": "672b2476ae5a4de9cb1be27bed11c73ea6f14dcc66cbad6c88ee1a68c579e354"
+      },
+      "sft": {
+        "answer": "3",
+        "raw": "<trace>{\"question_program\":[\"objects\",\"cylinder\",\"filter_shape\",\"end\",\"get_frame\",\"filter_stationary\",\"count\"],\"question_type\":\"descriptive\",\"selected_choice_ids\":[],\"selected_choice_programs\":[]}</trace><answer>3</answer>",
+        "correct": true,
+        "recordId": "672b2476ae5a4de9cb1be27bed11c73ea6f14dcc66cbad6c88ee1a68c579e354"
+      },
+      "grpo": {
+        "answer": "3",
+        "raw": "<trace>{\"question_program\":[\"objects\",\"cylinder\",\"filter_shape\",\"end\",\"get_frame\",\"filter_stationary\",\"count\"],\"question_type\":\"descriptive\",\"selected_choice_ids\":[],\"selected_choice_programs\":[]}</trace><answer>3</answer>",
+        "correct": true,
+        "recordId": "672b2476ae5a4de9cb1be27bed11c73ea6f14dcc66cbad6c88ee1a68c579e354"
+      },
+      "media": {
+        "video": "media/video_13945.webm",
+        "poster": "media/video_13945.jpg",
+        "width": 480,
+        "height": 320,
+        "fps": 25,
+        "frames": 128,
+        "duration": 5.12,
+        "codec": "VP8",
+        "originalMp4Sha256": "9fb1e35109abc357331c76e25dcbb892213e6ebdc1dc3ee36e45579f075e60e6",
+        "hashes": {
+          "video": "6a5de355cf5854310b219d445efba1fc977502c15d65d8bb99c281c3a1071299",
+          "poster": "7d83a816d7a64abb4c64c1d5f9a0c6cd610bc2d8e2c94ff760203c6cb340408e"
+        },
+        "derivation": "Full-clip CPU re-encoding; no trimming or frame-rate reduction. Poster: frame 0. GIF, where provided, uses a lossy 256-color palette."
+      }
+    },
+    {
+      "id": "video_13513|11",
+      "videoId": "video_13513",
+      "questionId": 11,
+      "ordinal": 200,
+      "type": "explanatory",
+      "question": "Which of the following is responsible for the collision between the blue object and the purple cube?",
+      "choices": [
+        {
+          "id": 0,
+          "text": "the metal cylinder's entering the scene"
+        },
+        {
+          "id": 1,
+          "text": "the purple object's colliding with the metal cylinder"
+        },
+        {
+          "id": 2,
+          "text": "the collision between the blue object and the rubber cylinder"
+        }
+      ],
+      "truth": "[]",
+      "group": "SFT 与 GRPO 均答对",
+      "base": {
+        "answer": "[0]",
+        "raw": "<trace>{ \"question_type\": \"collision_cause\", \"question_program\": \"collision_cause_between_blue_and_purple_cube\", \"selected_choice_ids\": [0], \"selected_choice_programs\": [ \"metal_cylinder_enters_scene\" ] }</trace><answer>[0]</answer>",
+        "correct": false,
+        "recordId": "e18ab552b322db335082fc75a5086e66b468fc4a2e19ed133253bc53d192d97e"
+      },
+      "sft": {
+        "answer": "[]",
+        "raw": "<trace>{\"question_program\":[\"events\",\"events\",\"objects\",\"blue\",\"filter_color\",\"unique\",\"filter_collision\",\"objects\",\"purple\",\"filter_color\",\"cube\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\",\"filter_ancestor\",\"belong_to\"],\"question_type\":\"explanatory\",\"selected_choice_ids\":[],\"selected_choice_programs\":[]}</trace><answer>[]</answer>",
+        "correct": true,
+        "recordId": "e18ab552b322db335082fc75a5086e66b468fc4a2e19ed133253bc53d192d97e"
+      },
+      "grpo": {
+        "answer": "[]",
+        "raw": "<trace>{\"question_program\":[\"events\",\"events\",\"objects\",\"blue\",\"filter_color\",\"unique\",\"filter_collision\",\"objects\",\"purple\",\"filter_color\",\"cube\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\",\"filter_ancestor\",\"belong_to\"],\"question_type\":\"explanatory\",\"selected_choice_ids\":[],\"selected_choice_programs\":[]}</trace><answer>[]</answer>",
+        "correct": true,
+        "recordId": "e18ab552b322db335082fc75a5086e66b468fc4a2e19ed133253bc53d192d97e"
+      },
+      "media": {
+        "video": "media/video_13513.webm",
+        "poster": "media/video_13513.jpg",
+        "width": 480,
+        "height": 320,
+        "fps": 25,
+        "frames": 128,
+        "duration": 5.12,
+        "codec": "VP8",
+        "originalMp4Sha256": "3ca632c06db3596086c42c1a0eaebdf3631eab6b60cc795788ad00096b41e720",
+        "hashes": {
+          "video": "bc7b144a4533ff1439c04a5a09ba50c0c37a3d90935963fc1ef7614eb09c3a97",
+          "poster": "9f5b73d8ab5fdd29d2e29bb2e91015006ca5d66de738e6dd446dca0fbefb2f87"
+        },
+        "derivation": "Full-clip CPU re-encoding; no trimming or frame-rate reduction. Poster: frame 0. GIF, where provided, uses a lossy 256-color palette."
+      }
+    },
+    {
+      "id": "video_10614|11",
+      "videoId": "video_10614",
+      "questionId": 11,
+      "ordinal": 202,
+      "type": "explanatory",
+      "question": "Which of the following is not responsible for the cylinder's colliding with the sphere?",
+      "choices": [
+        {
+          "id": 0,
+          "text": "the collision between the metal object and the cylinder"
+        },
+        {
+          "id": 1,
+          "text": "the presence of the blue cube"
+        },
+        {
+          "id": 2,
+          "text": "the presence of the cyan object"
+        },
+        {
+          "id": 3,
+          "text": "the collision between the cylinder and the cyan object"
+        }
+      ],
+      "truth": "[2,3]",
+      "group": "SFT 与 GRPO 均答对",
+      "base": {
+        "answer": "[0,2]",
+        "raw": "<trace>{ \"question_type\": \"multiple_choice\", \"question_program\": \"Which of the following is not responsible for the cylinder's colliding with the sphere?\", \"selected_choice_ids\": [0, 2], \"selected_choice_programs\": [ \"the collision between the metal object and the cylinder\", \"the collision between the cylinder and the cyan object\" ] }</trace><answer>[0,2]</answer>",
+        "correct": false,
+        "recordId": "dcbdf549f27e8114717546237fc4053c21e8d7411a51b2f4f90bdfff684c39ac"
+      },
+      "sft": {
+        "answer": "[2,3]",
+        "raw": "<trace>{\"question_program\":[\"events\",\"events\",\"objects\",\"cylinder\",\"filter_shape\",\"unique\",\"filter_collision\",\"objects\",\"sphere\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\",\"filter_ancestor\",\"belong_to\",\"negate\"],\"question_type\":\"explanatory\",\"selected_choice_ids\":[2,3],\"selected_choice_programs\":[{\"choice_id\":2,\"program\":[\"objects\",\"cyan\",\"filter_color\",\"unique\"]},{\"choice_id\":3,\"program\":[\"events\",\"objects\",\"cylinder\",\"filter_shape\",\"unique\",\"filter_collision\",\"objects\",\"cyan\",\"filter_color\",\"unique\",\"filter_collision\",\"unique\"]}]}</trace><answer>[2,3]</answer>",
+        "correct": true,
+        "recordId": "dcbdf549f27e8114717546237fc4053c21e8d7411a51b2f4f90bdfff684c39ac"
+      },
+      "grpo": {
+        "answer": "[2,3]",
+        "raw": "<trace>{\"question_program\":[\"events\",\"events\",\"objects\",\"cylinder\",\"filter_shape\",\"unique\",\"filter_collision\",\"objects\",\"sphere\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\",\"filter_ancestor\",\"belong_to\",\"negate\"],\"question_type\":\"explanatory\",\"selected_choice_ids\":[2,3],\"selected_choice_programs\":[{\"choice_id\":2,\"program\":[\"objects\",\"cyan\",\"filter_color\",\"unique\"]},{\"choice_id\":3,\"program\":[\"events\",\"objects\",\"cylinder\",\"filter_shape\",\"unique\",\"filter_collision\",\"objects\",\"cyan\",\"filter_color\",\"unique\",\"filter_collision\",\"unique\"]}]}</trace><answer>[2,3]</answer>",
+        "correct": true,
+        "recordId": "dcbdf549f27e8114717546237fc4053c21e8d7411a51b2f4f90bdfff684c39ac"
+      },
+      "media": {
+        "video": "media/video_10614.webm",
+        "poster": "media/video_10614.jpg",
+        "width": 480,
+        "height": 320,
+        "fps": 25,
+        "frames": 128,
+        "duration": 5.12,
+        "codec": "VP8",
+        "originalMp4Sha256": "93f85677025bb72cda653a68a33ab45e4819558153c74adb8af1de5fcbd56b90",
+        "hashes": {
+          "video": "dfa417367a1c1c1f7ba26e1af9aa40aa64afcf0d2c82328b611735f984c2ecfc",
+          "poster": "e20a787ae3734047e663da097f8d5b6d068f90e2f9b28ef07171d3b22bf32a02"
+        },
+        "derivation": "Full-clip CPU re-encoding; no trimming or frame-rate reduction. Poster: frame 0. GIF, where provided, uses a lossy 256-color palette."
+      }
+    },
+    {
+      "id": "video_11682|13",
+      "videoId": "video_11682",
+      "questionId": 13,
+      "ordinal": 401,
+      "type": "predictive",
+      "question": "What will happen next?",
+      "choices": [
+        {
+          "id": 0,
+          "text": "The red cube collides with the metal cylinder"
+        },
+        {
+          "id": 1,
+          "text": "The brown cube collides with the metal cylinder"
+        }
+      ],
+      "truth": "[1]",
+      "group": "SFT 与 GRPO 均答对",
+      "base": {
+        "answer": "[0]",
+        "raw": "<trace>{ \"question_type\": \"prediction\", \"question_program\": \"next_collision\", \"selected_choice_ids\": [0], \"selected_choice_programs\": [ \"The red cube collides with the metal cylinder\"] }</trace><answer>[0]</answer>",
+        "correct": false,
+        "recordId": "dd520a5359a03c45042ee59a8880a0b742b7c30ac3bc850b79b86fc016ed6102"
+      },
+      "sft": {
+        "answer": "[1]",
+        "raw": "<trace>{\"question_program\":[\"unseen_events\",\"belong_to\"],\"question_type\":\"predictive\",\"selected_choice_ids\":[1],\"selected_choice_programs\":[{\"choice_id\":1,\"program\":[\"all_events\",\"objects\",\"brown\",\"filter_color\",\"cube\",\"filter_shape\",\"unique\",\"filter_collision\",\"objects\",\"metal\",\"filter_material\",\"cylinder\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]}]}</trace><answer>[1]</answer>",
+        "correct": true,
+        "recordId": "dd520a5359a03c45042ee59a8880a0b742b7c30ac3bc850b79b86fc016ed6102"
+      },
+      "grpo": {
+        "answer": "[1]",
+        "raw": "<trace>{\"question_program\":[\"unseen_events\",\"belong_to\"],\"question_type\":\"predictive\",\"selected_choice_ids\":[1],\"selected_choice_programs\":[{\"choice_id\":1,\"program\":[\"all_events\",\"objects\",\"brown\",\"filter_color\",\"cube\",\"filter_shape\",\"unique\",\"filter_collision\",\"objects\",\"metal\",\"filter_material\",\"cylinder\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]}]}</trace><answer>[1]</answer>",
+        "correct": true,
+        "recordId": "dd520a5359a03c45042ee59a8880a0b742b7c30ac3bc850b79b86fc016ed6102"
+      },
+      "media": {
+        "video": "media/video_11682.webm",
+        "poster": "media/video_11682.jpg",
+        "width": 480,
+        "height": 320,
+        "fps": 25,
+        "frames": 128,
+        "duration": 5.12,
+        "codec": "VP8",
+        "originalMp4Sha256": "949e9fc14f8f6ee9da784e344c9bf4c3284bfb18687417707472d9c7112bb7d8",
+        "hashes": {
+          "video": "965c2fb6135bb974059822986c1a1812febe7a88bf76e13aa8ff7c5d7df6c369",
+          "poster": "4fdad6bf9441dfdcb4a4a5ebf40277eb3184d68116e15ad4b81f9bc24a981c9c"
+        },
+        "derivation": "Full-clip CPU re-encoding; no trimming or frame-rate reduction. Poster: frame 0. GIF, where provided, uses a lossy 256-color palette."
+      }
+    },
+    {
+      "id": "video_14121|11",
+      "videoId": "video_14121",
+      "questionId": 11,
+      "ordinal": 403,
+      "type": "predictive",
+      "question": "Which event will happen next?",
+      "choices": [
+        {
+          "id": 0,
+          "text": "The metal cube collides with the yellow rubber cube"
+        },
+        {
+          "id": 1,
+          "text": "The gray object collides with the cylinder"
+        }
+      ],
+      "truth": "[1]",
+      "group": "SFT 与 GRPO 均答对",
+      "base": {
+        "answer": "[0, 1]",
+        "raw": "<trace>{ \"question_type\": \"next_event\", \"question_program\": \"next_event\", \"selected_choice_ids\": [0, 1], \"selected_choice_programs\": [ \"The metal cube collides with the yellow rubber cube\", \"The gray object collides with the cylinder\" ] }</trace><answer>[0, 1]</answer>",
+        "correct": false,
+        "recordId": "1d1789aaf0e709b2a4d1a3ac7046599df458eb0a8517fc6fd89314fe81d17116"
+      },
+      "sft": {
+        "answer": "[1]",
+        "raw": "<trace>{\"question_program\":[\"unseen_events\",\"belong_to\"],\"question_type\":\"predictive\",\"selected_choice_ids\":[1],\"selected_choice_programs\":[{\"choice_id\":1,\"program\":[\"all_events\",\"objects\",\"gray\",\"filter_color\",\"unique\",\"filter_collision\",\"objects\",\"cylinder\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]}]}</trace><answer>[1]</answer>",
+        "correct": true,
+        "recordId": "1d1789aaf0e709b2a4d1a3ac7046599df458eb0a8517fc6fd89314fe81d17116"
+      },
+      "grpo": {
+        "answer": "[1]",
+        "raw": "<trace>{\"question_program\":[\"unseen_events\",\"belong_to\"],\"question_type\":\"predictive\",\"selected_choice_ids\":[1],\"selected_choice_programs\":[{\"choice_id\":1,\"program\":[\"all_events\",\"objects\",\"gray\",\"filter_color\",\"unique\",\"filter_collision\",\"objects\",\"cylinder\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]}]}</trace><answer>[1]</answer>",
+        "correct": true,
+        "recordId": "1d1789aaf0e709b2a4d1a3ac7046599df458eb0a8517fc6fd89314fe81d17116"
+      },
+      "media": {
+        "video": "media/video_14121.webm",
+        "poster": "media/video_14121.jpg",
+        "width": 480,
+        "height": 320,
+        "fps": 25,
+        "frames": 128,
+        "duration": 5.12,
+        "codec": "VP8",
+        "originalMp4Sha256": "171b3b6d1fe985cdd13fd0bd01f157a0d33d2bd8a818cb97341551dee9de37bf",
+        "hashes": {
+          "video": "579cfc9871db265a92485fe41b376f1b5b8ac3e781c54be3b533f45fa5da92b7",
+          "poster": "1cad2f80a3fa1777c32ae2498cb297453f66bc258b1a9cc47b85d467820cc0b1"
+        },
+        "derivation": "Full-clip CPU re-encoding; no trimming or frame-rate reduction. Poster: frame 0. GIF, where provided, uses a lossy 256-color palette."
+      }
+    },
+    {
+      "id": "video_12373|14",
+      "videoId": "video_12373",
+      "questionId": 14,
+      "ordinal": 600,
+      "type": "counterfactual",
+      "question": "If the purple object is removed, which event will happen?",
+      "choices": [
+        {
+          "id": 0,
+          "text": "The brown rubber object and the gray sphere collide"
+        },
+        {
+          "id": 1,
+          "text": "The gray sphere and the brown metal sphere collide"
+        },
+        {
+          "id": 2,
+          "text": "The cylinder collides with the gray sphere"
+        },
+        {
+          "id": 3,
+          "text": "The cylinder and the brown metal sphere collide"
+        }
+      ],
+      "truth": "[0]",
+      "group": "SFT 与 GRPO 均答错",
+      "base": {
+        "answer": "[2]",
+        "raw": "<trace>{ \"question_type\": \"event_prediction\", \"question_program\": \"remove_object(purple_object)\", \"selected_choice_ids\": [2], \"selected_choice_programs\": [ \"collide(cylinder, gray_sphere)\" ] }</trace><answer>[2]</answer>",
+        "correct": false,
+        "recordId": "ac6ab60a5e1cd1a7cdb2e130a2b85d514f536f5e98bacb04efe3b7a00fd5865f"
+      },
+      "sft": {
+        "answer": "[0,2]",
+        "raw": "<trace>{\"question_program\":[\"all_events\",\"objects\",\"purple\",\"filter_color\",\"unique\",\"get_counterfact\",\"belong_to\"],\"question_type\":\"counterfactual\",\"selected_choice_ids\":[0,2],\"selected_choice_programs\":[{\"choice_id\":0,\"program\":[\"all_events\",\"objects\",\"brown\",\"filter_color\",\"rubber\",\"filter_material\",\"unique\",\"filter_collision\",\"objects\",\"gray\",\"filter_color\",\"sphere\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]},{\"choice_id\":2,\"program\":[\"all_events\",\"objects\",\"cylinder\",\"filter_shape\",\"unique\",\"filter_collision\",\"objects\",\"gray\",\"filter_color\",\"sphere\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]}]}</trace><answer>[0,2]</answer>",
+        "correct": false,
+        "recordId": "ac6ab60a5e1cd1a7cdb2e130a2b85d514f536f5e98bacb04efe3b7a00fd5865f"
+      },
+      "grpo": {
+        "answer": "[0,2]",
+        "raw": "<trace>{\"question_program\":[\"all_events\",\"objects\",\"purple\",\"filter_color\",\"unique\",\"get_counterfact\",\"belong_to\"],\"question_type\":\"counterfactual\",\"selected_choice_ids\":[0,2],\"selected_choice_programs\":[{\"choice_id\":0,\"program\":[\"all_events\",\"objects\",\"brown\",\"filter_color\",\"rubber\",\"filter_material\",\"unique\",\"filter_collision\",\"objects\",\"gray\",\"filter_color\",\"sphere\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]},{\"choice_id\":2,\"program\":[\"all_events\",\"objects\",\"cylinder\",\"filter_shape\",\"unique\",\"filter_collision\",\"objects\",\"gray\",\"filter_color\",\"sphere\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]}]}</trace><answer>[0,2]</answer>",
+        "correct": false,
+        "recordId": "ac6ab60a5e1cd1a7cdb2e130a2b85d514f536f5e98bacb04efe3b7a00fd5865f"
+      },
+      "media": {
+        "video": "media/video_12373.webm",
+        "poster": "media/video_12373.jpg",
+        "width": 480,
+        "height": 320,
+        "fps": 25,
+        "frames": 128,
+        "duration": 5.12,
+        "codec": "VP8",
+        "originalMp4Sha256": "49a4931d03eec266c2933887f17dc422f96255af7decb633c5711adad3c9a625",
+        "hashes": {
+          "video": "9900ade74e08c3e748a5e133b2c3176138b77372e72f747b0be52d994b339e6f",
+          "poster": "54e0767736ff81a5f61c1a229a819fb3eba385c5237dfd8f53c56b820a9002e8"
+        },
+        "derivation": "Full-clip CPU re-encoding; no trimming or frame-rate reduction. Poster: frame 0. GIF, where provided, uses a lossy 256-color palette."
+      }
+    },
+    {
+      "id": "video_11961|14",
+      "videoId": "video_11961",
+      "questionId": 14,
+      "ordinal": 601,
+      "type": "counterfactual",
+      "question": "Which of the following will not happen without the rubber object?",
+      "choices": [
+        {
+          "id": 0,
+          "text": "The brown object collides with the blue sphere"
+        },
+        {
+          "id": 1,
+          "text": "The red object collides with the cube"
+        },
+        {
+          "id": 2,
+          "text": "The cube and the brown cylinder collide"
+        },
+        {
+          "id": 3,
+          "text": "The cube and the blue sphere collide"
+        }
+      ],
+      "truth": "[0,2,3]",
+      "group": "SFT 与 GRPO 均答错",
+      "base": {
+        "answer": "[0, 1, 2, 3]",
+        "raw": "<trace>{ \"question_type\": \"multiple_choice\", \"question_program\": \"will_not_happen_without_rubber_object\", \"selected_choice_ids\": [0, 1, 2, 3], \"selected_choice_programs\": [ \"The brown object collides with the blue sphere\", \"The red object collides with the cube\", \"The cube and the brown cylinder collide\", \"The cube and the blue sphere collide\" ] }</trace><answer>[0, 1, 2, 3]</answer>",
+        "correct": false,
+        "recordId": "d46e21b8f0e43f9d73572ba898cec1ab1756b203e4ce2ee7d643312521422d6a"
+      },
+      "sft": {
+        "answer": "[0,3]",
+        "raw": "<trace>{\"question_program\":[\"all_events\",\"objects\",\"rubber\",\"filter_material\",\"unique\",\"get_counterfact\",\"belong_to\",\"negate\"],\"question_type\":\"counterfactual\",\"selected_choice_ids\":[0,3],\"selected_choice_programs\":[{\"choice_id\":0,\"program\":[\"all_events\",\"objects\",\"brown\",\"filter_color\",\"unique\",\"filter_collision\",\"objects\",\"blue\",\"filter_color\",\"sphere\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]},{\"choice_id\":3,\"program\":[\"all_events\",\"objects\",\"cube\",\"filter_shape\",\"unique\",\"filter_collision\",\"objects\",\"blue\",\"filter_color\",\"sphere\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]}]}</trace><answer>[0,3]</answer>",
+        "correct": false,
+        "recordId": "d46e21b8f0e43f9d73572ba898cec1ab1756b203e4ce2ee7d643312521422d6a"
+      },
+      "grpo": {
+        "answer": "[0,3]",
+        "raw": "<trace>{\"question_program\":[\"all_events\",\"objects\",\"rubber\",\"filter_material\",\"unique\",\"get_counterfact\",\"belong_to\",\"negate\"],\"question_type\":\"counterfactual\",\"selected_choice_ids\":[0,3],\"selected_choice_programs\":[{\"choice_id\":0,\"program\":[\"all_events\",\"objects\",\"brown\",\"filter_color\",\"unique\",\"filter_collision\",\"objects\",\"blue\",\"filter_color\",\"sphere\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]},{\"choice_id\":3,\"program\":[\"all_events\",\"objects\",\"cube\",\"filter_shape\",\"unique\",\"filter_collision\",\"objects\",\"blue\",\"filter_color\",\"sphere\",\"filter_shape\",\"unique\",\"filter_collision\",\"unique\"]}]}</trace><answer>[0,3]</answer>",
+        "correct": false,
+        "recordId": "d46e21b8f0e43f9d73572ba898cec1ab1756b203e4ce2ee7d643312521422d6a"
+      },
+      "media": {
+        "video": "media/video_11961.webm",
+        "poster": "media/video_11961.jpg",
+        "width": 480,
+        "height": 320,
+        "fps": 25,
+        "frames": 128,
+        "duration": 5.12,
+        "codec": "VP8",
+        "originalMp4Sha256": "7df245299d797cb1fce596aa1aa00b2c13220dfa08b0d8a084418625cc02add7",
+        "hashes": {
+          "video": "4f1c85c0894667fe53ff54ae1154230f15931e17504aaa6047606502f1a0ff3b",
+          "poster": "015a5d087a9568ce28cab0ef6cc76ff81d41feb3a76aaa5f19e897290fbf72da"
+        },
+        "derivation": "Full-clip CPU re-encoding; no trimming or frame-rate reduction. Poster: frame 0. GIF, where provided, uses a lossy 256-color palette."
+      }
+    },
+    {
+      "id": "video_11060|9",
+      "videoId": "video_11060",
+      "questionId": 9,
+      "ordinal": 8,
+      "type": "descriptive",
+      "question": "How many collisions happen?",
+      "choices": [],
+      "truth": "1",
+      "group": "GRPO 修正 SFT",
+      "base": {
+        "answer": "2",
+        "raw": "<trace>{ \"question_type\": \"count\", \"question_program\": \"count_collisions\", \"selected_choice_ids\": [0], \"selected_choice_programs\": [\"count_collisions\"] }</trace><answer>2</answer>",
+        "correct": false,
+        "recordId": "1a52d14984cc43a0c5b6bd1cd5a091623365be64383811903ff3d49b49a17241"
+      },
+      "sft": {
+        "answer": "2",
+        "raw": "<trace>{\"question_program\":[\"events\",\"objects\",\"filter_collision\",\"count\"],\"question_type\":\"descriptive\",\"selected_choice_ids\":[],\"selected_choice_programs\":[]}</trace><answer>2</answer>",
+        "correct": false,
+        "recordId": "1a52d14984cc43a0c5b6bd1cd5a091623365be64383811903ff3d49b49a17241"
+      },
+      "grpo": {
+        "answer": "1",
+        "raw": "<trace>{\"question_program\":[\"events\",\"objects\",\"filter_collision\",\"count\"],\"question_type\":\"descriptive\",\"selected_choice_ids\":[],\"selected_choice_programs\":[]}</trace><answer>1</answer>",
+        "correct": true,
+        "recordId": "1a52d14984cc43a0c5b6bd1cd5a091623365be64383811903ff3d49b49a17241"
+      },
+      "media": {
+        "video": "media/video_11060.webm",
+        "poster": "media/video_11060.jpg",
+        "width": 480,
+        "height": 320,
+        "fps": 25,
+        "frames": 128,
+        "duration": 5.12,
+        "codec": "VP8",
+        "originalMp4Sha256": "141262bdb0f5468cd4f033d87429eb2fb2ceb4bba568a10631eab8a6715b1740",
+        "hashes": {
+          "video": "6e6a67fafe544e129eb0688dd56b815beeefd644205acdba0c1d43ffe1fb88d7",
+          "poster": "dc5c882783db097b57376eaf78c91531871837bdce6eca27d93aa05878096bd3",
+          "gif": "aadf3bf7632e04b0ab132f68c873411f290a93f9749c98de22a63ce1a66989a4"
+        },
+        "derivation": "Full-clip CPU re-encoding; no trimming or frame-rate reduction. Poster: frame 0. GIF, where provided, uses a lossy 256-color palette.",
+        "gif": "media/video_11060.gif"
+      }
+    },
+    {
+      "id": "video_10317|1",
+      "videoId": "video_10317",
+      "questionId": 1,
+      "ordinal": 0,
+      "type": "descriptive",
+      "question": "How many cylinders are moving?",
+      "choices": [],
+      "truth": "0",
+      "group": "GRPO 相对 SFT 退步",
+      "base": {
+        "answer": "0",
+        "raw": "<trace>{ \"question_type\": \"count\", \"question_program\": \"count_objects_with_type(moving, cylinder)\", \"selected_choice_ids\": [], \"selected_choice_programs\": [] }</trace><answer>0</answer>",
+        "correct": true,
+        "recordId": "b6c72f0f9e7e291ddd2dd2c1bf90dff376c6d960817283634e7e75732e44a473"
+      },
+      "sft": {
+        "answer": "0",
+        "raw": "<trace>{\"question_program\":[\"objects\",\"cylinder\",\"filter_shape\",\"null\",\"filter_moving\",\"count\"],\"question_type\":\"descriptive\",\"selected_choice_ids\":[],\"selected_choice_programs\":[]}</trace><answer>0</answer>",
+        "correct": true,
+        "recordId": "b6c72f0f9e7e291ddd2dd2c1bf90dff376c6d960817283634e7e75732e44a473"
+      },
+      "grpo": {
+        "answer": "1",
+        "raw": "<trace>{\"question_program\":[\"objects\",\"cylinder\",\"filter_shape\",\"null\",\"filter_moving\",\"count\"],\"question_type\":\"descriptive\",\"selected_choice_ids\":[],\"selected_choice_programs\":[]}</trace><answer>1</answer>",
+        "correct": false,
+        "recordId": "b6c72f0f9e7e291ddd2dd2c1bf90dff376c6d960817283634e7e75732e44a473"
+      },
+      "media": {
+        "video": "media/video_10317.webm",
+        "poster": "media/video_10317.jpg",
+        "width": 480,
+        "height": 320,
+        "fps": 25,
+        "frames": 128,
+        "duration": 5.12,
+        "codec": "VP8",
+        "originalMp4Sha256": "0b92d6ccf15bad414dabbebb5b830fe4523ebb1f0d5696a2de82e79b053722ff",
+        "hashes": {
+          "video": "50ac2e544527985444144b4c76aaa93f8b0ac59302a2629a4c310e238a7d282a",
+          "poster": "a1abf86de2e7910953bba92b44b2956f4609a1d29ee4e0438a5b143428201477",
+          "gif": "35b565baeb1106d39b63f9730d150ed99c54974999ee4ca4c2d45f900a609f84"
+        },
+        "derivation": "Full-clip CPU re-encoding; no trimming or frame-rate reduction. Poster: frame 0. GIF, where provided, uses a lossy 256-color palette.",
+        "gif": "media/video_10317.gif"
+      }
+    }
+  ]
+};

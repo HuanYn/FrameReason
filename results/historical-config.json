@@ -1,0 +1,83 @@
+{
+  "schema_version": "framereason.historical_config/1",
+  "purpose": "Sanitized record of the completed main-line experiment, not an automatic launch request.",
+  "base_model": {
+    "repository": "Qwen/Qwen3-VL-4B-Instruct",
+    "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17"
+  },
+  "common": {
+    "seed": 42,
+    "data_seed": 42,
+    "model_type": "qwen3_vl",
+    "template": "qwen3_vl",
+    "tuner_type": "lora",
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "target_modules": "all-linear",
+    "freeze_vit": true,
+    "freeze_aligner": true,
+    "torch_dtype": "bfloat16",
+    "attn_impl": "sdpa",
+    "max_length": 2048,
+    "per_device_train_batch_size": 1,
+    "split_dataset_ratio": 0,
+    "dataset_num_proc": 1,
+    "lr_scheduler_type": "constant",
+    "warmup_ratio": 0.0,
+    "save_steps": 50,
+    "save_total_limit": 2,
+    "save_only_model": false,
+    "logging_steps": 1,
+    "wandb": false
+  },
+  "sft": {
+    "learning_rate": 0.0001,
+    "gradient_accumulation_steps": 16,
+    "gradient_checkpointing": true,
+    "training_rows": 12000,
+    "max_steps": 750,
+    "selected_step": 700,
+    "selection": "Best of preserved checkpoints 700 and 750 on the same 2000-question development set"
+  },
+  "grpo": {
+    "actor_initialization": "SFT700 adapter",
+    "inference_adapter_loading": "Final GRPO actor adapter only; do not stack the old SFT adapter on it",
+    "learning_rate": 0.00001,
+    "gradient_accumulation_steps": 4,
+    "steps_per_generation": 4,
+    "num_generations": 4,
+    "num_iterations": 1,
+    "use_vllm": false,
+    "temperature": 0.9,
+    "beta": 0,
+    "max_completion_length": 320,
+    "max_steps": 3000,
+    "selected_step": 3000,
+    "selection": "Final checkpoint fixed before its development and test evaluation; development result is report-only"
+  },
+  "evaluation": {
+    "frames_per_question": 8,
+    "batch_size": 1,
+    "seed": 42,
+    "precision": "bfloat16",
+    "backend": "Transformers",
+    "attention": "sdpa",
+    "temperature": 0,
+    "generations_per_question": 1,
+    "max_new_tokens": 320,
+    "malformed_generation_retries": 0,
+    "official_leaderboard_protocol": false
+  },
+  "hardware": {
+    "gpu_model": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 1,
+    "vram_gib": 24
+  },
+  "reward": {
+    "formula": "clip(0.1 * format + 0.5 * answer_correct + 0.4 * full_trace_match - 0.1 * repeated_or_overlong, 0, 1)",
+    "trace_target": "CLEVRER annotation functional program",
+    "event_executor": false,
+    "llm_judge": false,
+    "advantage": "(reward - group_mean) / (sample_std + 1e-4)"
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "dataset": {
+    "development_rows": 2000,
+    "evaluated_rows": 800,
+    "frames_per_question": 8,
+    "name": "CLEVRER custom fixed800",
+    "official_source_split": "validation",
+    "parent_rows": 4000,
+    "parent_sha256_historical_path_bound_jsonl": "d3c26830f6668e9043046d17e49234b207d68893331399c06794d7debafef74e",
+    "rows_per_type": 200,
+    "seed": 42,
+    "subset_sha256_historical_path_bound_jsonl": "2eea9c66767f79820a040806bffb578fb93a257fec96d1dfaa7b41e235c718dd",
+    "train_rows": 12000,
+    "unique_videos": 754
+  },
+  "decode": {
+    "max_tokens": 320,
+    "n": 1,
+    "num_beams": 1,
+    "repetition_penalty": 1.0,
+    "return_details": true,
+    "stream": false,
+    "temperature": 0,
+    "top_k": 50,
+    "top_p": 1.0
+  },
+  "models": {
+    "base": {
+      "answer_accuracy": 0.42875,
+      "answer_correct": 343,
+      "by_type": {
+        "counterfactual": {
+          "correct": 39,
+          "total": 200
+        },
+        "descriptive": {
+          "correct": 108,
+          "total": 200
+        },
+        "explanatory": {
+          "correct": 45,
+          "total": 200
+        },
+        "predictive": {
+          "correct": 151,
+          "total": 200
+        }
+      },
+      "checkpoint_step": null,
+      "format_valid": 800,
+      "full_trace_consistent": 0,
+      "joint_success": 0,
+      "mean_rule_reward": 0.3135,
+      "total": 800
+    },
+    "grpo": {
+      "answer_accuracy": 0.7575,
+      "answer_correct": 606,
+      "by_type": {
+        "counterfactual": {
+          "correct": 108,
+          "total": 200
+        },
+        "descriptive": {
+          "correct": 160,
+          "total": 200
+        },
+        "explanatory": {
+          "correct": 156,
+          "total": 200
+        },
+        "predictive": {
+          "correct": 182,
+          "total": 200
+        }
+      },
+      "checkpoint_step": 3000,
+      "format_valid": 800,
+      "full_trace_consistent": 644,
+      "joint_success": 605,
+      "mean_rule_reward": 0.80075,
+      "total": 800
+    },
+    "sft": {
+      "answer_accuracy": 0.76125,
+      "answer_correct": 609,
+      "by_type": {
+        "counterfactual": {
+          "correct": 108,
+          "total": 200
+        },
+        "descriptive": {
+          "correct": 153,
+          "total": 200
+        },
+        "explanatory": {
+          "correct": 163,
+          "total": 200
+        },
+        "predictive": {
+          "correct": 185,
+          "total": 200
+        }
+      },
+      "checkpoint_step": 700,
+      "format_valid": 800,
+      "full_trace_consistent": 656,
+      "joint_success": 609,
+      "mean_rule_reward": 0.808625,
+      "total": 800
+    }
+  },
+  "paired": {
+    "grpo_vs_base": {
+      "both_correct": 318,
+      "both_wrong": 169,
+      "corrected": 288,
+      "delta_percentage_points": 32.875,
+      "lost": 25,
+      "net_correct": 263,
+      "relative_accuracy_change": 0.7667638483965015
+    },
+    "grpo_vs_sft": {
+      "both_correct": 547,
+      "both_wrong": 132,
+      "corrected": 59,
+      "delta_percentage_points": -0.375,
+      "lost": 62,
+      "net_correct": -3,
+      "relative_accuracy_change": -0.0049261083743842365
+    },
+    "sft_vs_base": {
+      "both_correct": 310,
+      "both_wrong": 158,
+      "corrected": 299,
+      "delta_percentage_points": 33.25,
+      "lost": 33,
+      "net_correct": 266,
+      "relative_accuracy_change": 0.7755102040816326
+    }
+  },
+  "reproduction_scope": {
+    "all_800_historical_answer_correct_flags_included": true,
+    "all_800_official_ground_truth_included": false,
+    "all_800_raw_responses_included": true,
+    "default_verification": "Recount archived per-question correctness and logged rewards; not an independent full official-ground-truth re-score.",
+    "full_training_dataset_included": false,
+    "official_reference_examples_included": 10,
+    "weights_included": false
+  },
+  "schema_version": "framereason.public_results/1",
+  "status": "historical_single_seed_results_not_new_inference",
+  "training_signal": {
+    "candidates_per_group": 4,
+    "comparison_precision_decimal_places": 6,
+    "deduplication": "Original completion log has 3001 lines; only the final exact duplicate is excluded in this derived view.",
+    "equal_reward_fraction": 0.8863333333333333,
+    "equal_reward_groups": 2659,
+    "equal_reward_histogram": {
+      "0.1": 457,
+      "0.5": 87,
+      "0.6": 5,
+      "1.0": 2110
+    },
+    "equal_reward_nonzero_advantage_groups": 0,
+    "unequal_reward_groups": 341,
+    "unique_groups": 3000,
+    "zero_grad_norm_steps": 2659
+  }
+}
