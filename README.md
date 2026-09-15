@@ -2,7 +2,7 @@
 
 ## 基于 Qwen3-VL 的视频理解与可验证奖励后训练：技术报告
 
-FrameReason 研究一个具体问题：在单卡 RTX 3090 24GB 条件下，先用监督微调让视觉语言模型适应 CLEVRER 视频问答，再用可验证奖励进行 GRPO，能否继续提高答题正确率？项目以 Qwen3-VL-4B-Instruct 为基座，通过 ms-swift 完成数据转换、八帧输入、LoRA SFT、GRPO 和同题对照评测。
+项目以 Qwen3-VL-4B-Instruct 为基座，通过 ms-swift 完成数据转换、八帧输入、LoRA SFT、GRPO 和同题对照评测。
 
 在 seed42 的固定 800 题内部测试集上，Base、SFT700、GRPO3000 分别答对 343、609、606 题。SFT 相比 Base 提高 33.250 个百分点；GRPO 纠正 59 题、丢失 62 题，没有获得额外净收益。本仓库发布最小任务代码、历史结果复核材料和视频问答 Demo，保留正结果与负结果。
 
@@ -11,8 +11,6 @@ FrameReason 研究一个具体问题：在单卡 RTX 3090 24GB 条件下，先�
 | Qwen3-VL-4B-Instruct | 343 / 800 | 42.875% |
 | LoRA SFT，checkpoint 700 | 609 / 800 | 76.125% |
 | SFT + GRPO，checkpoint 3000 | 606 / 800 | 75.750% |
-
-这是单 seed、自定义平衡子集的结果，不是 CLEVRER 官方隐藏测试榜单。源码整理后的 CPU 检查与原实验的 GPU 训练结果分别记录，不以单元测试代替模型效果验证。
 
 ## 1. 视频与回答 Demo
 
