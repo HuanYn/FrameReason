@@ -19,8 +19,8 @@ FrameReason 研究一个具体问题：在单卡 RTX 3090 24GB 条件下，先�
 克隆仓库后，无需模型、GPU 或教师 API，即可观看十段真实视频及三组已保存的回答：
 
 ```bash
-git clone https://github.com/HuanYn/-FrameReason.git
-cd -- -FrameReason
+git clone https://github.com/HuanYn/FrameReason.git
+cd FrameReason
 python -m http.server 8766 --bind 127.0.0.1 --directory demo
 ```
 
